@@ -1,0 +1,14 @@
+<div class="card bg-light mb-3" style="width: 640px;">
+  <div class="card-body">
+    <div class="card-title"><h2>Create a Joke</h2></div>
+    <div class="form-group">
+      <label for="inputSetup">Setup</label>
+      <input type="text" class="form-control" id="inputSetup" placeholder="Enter setup" #setup>
+    </div>
+    <div class="form-group">
+      <label for="inputPunchline">Punchline</label>
+      <input type="text" class="form-control" id="inputPunchline" placeholder="Enter punchline" #punchline>
+    </div>
+    <button (click)="createJoke(setup.value, punchline.value)" type="submit" class="btn btn-primary">Submit</button>
+  </div>
+</div>
