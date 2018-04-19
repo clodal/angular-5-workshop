@@ -4,17 +4,19 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { JokeComponent } from './joke.component';
+import { JokeListComponent } from './jokelist.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    JokeComponent
+    JokeComponent,
+    JokeListComponent,
   ],
   imports: [
     BrowserModule
   ],
   providers: [],
-  bootstrap: [JokeComponent]
+  bootstrap: [JokeListComponent]
 })
 export class AppModule { }
