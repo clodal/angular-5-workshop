@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 export class Joke {
   public setup: string;
@@ -19,6 +20,7 @@ export class Joke {
   template: `
     <div class="card mb-3" style="width: 320px;">
       <div class="card-body">
+        <h6 *ngIf="id">{{ id }}</h6>
         <h4 class="card-title">
           {{ joke.setup }}
         </h4>
@@ -34,4 +36,11 @@ export class Joke {
 })
 export class JokeComponent {
   @Input() joke: Joke;
+  id: number;
+
+  constructor(private route: ActivatedRoute) {
+    this.route.params.subscribe(params => {
+      this.id = params.id;
+    });
+  }
 }

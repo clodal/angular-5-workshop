@@ -13,6 +13,7 @@ const appRoutes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'jokes', component: JokeListComponent },
   { path: 'joke-list', redirectTo: 'jokes'},
+  { path: 'joke/:id', component: JokeComponent },
   { path: '**', component: PageNotFoundComponent },
 ];
 
