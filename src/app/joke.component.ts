@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 export class Joke {
@@ -30,17 +30,25 @@ export class Joke {
         <button class="btn btn-primary" (click)="joke.toggle()" role="button">
           Tell me
         </button>
+        <button class="btn btn-danger" (click)="deleteJoke()" role="button">
+          Delete
+        </button>
       </div>
     </div>
   `
 })
 export class JokeComponent {
   @Input() joke: Joke;
+  @Output() jokeDeleted = new EventEmitter<Joke>();
   id: number;
 
   constructor(private route: ActivatedRoute) {
     this.route.params.subscribe(params => {
       this.id = params.id;
     });
+  }
+
+  deleteJoke() {
+    this.jokeDeleted.emit(this.joke);
   }
 }
