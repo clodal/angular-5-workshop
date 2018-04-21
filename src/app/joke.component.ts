@@ -1,5 +1,19 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import {
+  Component,
+  Input,
+  Output,
+  EventEmitter,
+  OnChanges,
+  OnInit,
+  DoCheck,
+  AfterContentInit,
+  AfterContentChecked,
+  AfterViewInit,
+  AfterViewChecked,
+  OnDestroy,
+} from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+
 
 export class Joke {
   public setup: string;
@@ -37,15 +51,49 @@ export class Joke {
     </div>
   `
 })
-export class JokeComponent {
+export class JokeComponent implements
+  OnChanges,
+  OnInit,
+  DoCheck,
+  AfterContentInit,
+  AfterContentChecked,
+  AfterViewInit,
+  AfterViewChecked,
+  OnDestroy {
+
   @Input() joke: Joke;
-  @Output() jokeDeleted = new EventEmitter<Joke>();
+  @Output() jokeDeleted = new EventEmitter();
   id: number;
 
   constructor(private route: ActivatedRoute) {
     this.route.params.subscribe(params => {
       this.id = params.id;
     });
+  }
+
+  ngOnChanges() {
+    console.log(`ngOnChanges - joke is ${this.joke}`);
+  }
+  ngOnInit() {
+    console.log(`ngOnInit  - joke is ${this.joke}`);
+  }
+  ngDoCheck() {
+    console.log('ngDoCheck');
+  }
+  ngAfterContentInit() {
+    console.log('ngAfterContentInit');
+  }
+  ngAfterContentChecked() {
+    console.log('ngAfterContentChecked');
+  }
+  ngAfterViewInit() {
+    console.log('ngAfterViewInit');
+  }
+  ngAfterViewChecked() {
+    console.log('ngAfterViewChecked');
+  }
+  ngOnDestroy() {
+    console.log('ngOnDestroy');
   }
 
   deleteJoke() {
